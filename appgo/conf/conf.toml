@@ -5,6 +5,7 @@
     osspic = "ecologyoss"
     chromium = "chromium"
     baidutongji= ""
+    scheme = "http"
 
 # 第三方登录配置
 [oauth]
@@ -72,6 +73,10 @@ qqUserInfo="https://graph.qq.com/user/get_user_info"
     from = ""
     mailExpired = 3600
     mailMaxNum = 3
+
+[github]
+    token = ""
+    isExec = false
 
 [muses]
     [muses.app]

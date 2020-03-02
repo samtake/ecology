@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {{template "widgets/head.html" .}}
+</head>
+<style>
+.home-list-item {
+    display: flex;
+    padding: 25px;
+    box-sizing: border-box;
+    background-color: #fff;
+    position: relative;
+    border-bottom: 1px solid #e6e8e8;
+}
+.home-list-item .book-cover {
+    width: 100px;
+    height: 140px;
+    flex-shrink: 0;
+    box-shadow: 3px 4px 12px 0 rgba(0,0,0,.2);
+    overflow: hidden;
+    background-color: #fff;
+}
+.home-list-item .book-info {
+    flex-grow: 1;
+    overflow: hidden;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #2e3135;
+    padding-left: 22px;
+}
+.home-list-item .book-desc {
+    margin-top: 5px;
+    line-height: 20px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    -webkit-line-clamp: 1;
+    color: #71777c;
+    white-space: nowrap;
+}
+.home-list-item .book-author {
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+    .home-active {
+        font-weight: 500;
+        color: #fa8919;
+        background: #fbf5ee;
+        position: relative;
+        margin-right: 5px;
+        margin-bottom: 12px;
+        padding: 0 12px;
+        height: 22px;
+        line-height: 22px;
+        font-size: 15px;
+        border-radius: 14px;
+        white-space: nowrap;
+    }
+</style>
+<link href="/static/my/card.css" rel="stylesheet">
+<body>
+<div class="manual-reader manual-container">
+    {{template "widgets/header.html" .}}
+    <div class="container manual-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-xs-12 mgt-15px" style="line-height: 200%;">
+                    {{if (ads "explore-under-nav" $.IsMobile)}}
+                        <div class="ap ap-explore-under-nav mgb-15px">
+                            {{str2html (ads "explore-under-nav" $.IsMobile)}}
+                        </div>
+                    {{end}}
+                    <div class="help-block lang-explore" style="margin: 10px 0 15px;">
+                        <span class="text-muted">排序：</span>
+                        <a {{if eq $.Type "latest"}}class="home-active"{{end}} href="/awesome?type=latest">最新</a>
+{{/*                        <a {{if eq $.Type "popular"}}class="home-active"{{end}} href="/awesome?type=popular">热门</a>*/}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card-section clearfix">
+                        {{range $index,$item := .Lists}}
+                            <div class="card-container">
+                                <header>
+                                    <div class="logo">
+                                        <img onerror="this.src='/static/images/avatar.png'"  class="img-responsive" src="{{$item.OwnerAvatarUrl}}">
+                                    </div>
+                                    <div class="title">
+                                        <a class="show-loader" href="{{$item.HtmlUrl}}" >
+                                            <h4 title="apple/swift">{{$item.Name}}</h4>
+                                        </a>
+                                    </div>
+                                    <div class="star-bg"></div>
+                                    <div class="star">
+                                        <span>{{$item.StarCount}}</span>
+                                        <img src="/static/myicon/star.svg">
+                                    </div>
+                                </header>
+                                <div class="body">
+                                    <p>{{$item.Desc}}</p>
+                                </div>
+{{/*                                <div class="book-author">*/}}
+{{/*                                    <div class="author-info">*/}}
+{{/*                                        <span>协议：{{$item.LicenseName}}<span class="dot"> · </span>语言：{{$item.Language}}<span class="dot"> · </span>最近更新时间：{{$item.GitUpdatedAt}}</span>*/}}
+{{/*                                    </div>*/}}
+{{/*                                </div>*/}}
+                                <footer>
+                                    <ul>
+                                        <li>
+                                            <img src="/static/myicon/forks.svg">
+                                            <span>{{$item.ForkCount}}</span>
+                                        </li>
+                                        <li>
+                                            <img src="/static/myicon/github.svg" >
+                                            <span>{{$item.ReadCount}}</span>
+                                        </li>
+                                    </ul>
+                                    <div style="display: flex;">
+                                        {{if ne $item.HomePage ""}}
+                                            <a  style="margin-right: 10px" class="view show-loader" href="/api/web/awesome/click?q2={{$item.HomePage}}" title="查看文档" target="_blank">官网</a>
+                                        {{end}}
+                                        <a class="view show-loader"  href="/api/web/awesome/click?q1={{$item.HtmlUrl}}" title="查看文档" target="_blank">Github</a>
+                                    </div>
+                                </footer>
+                            </div>
+                        {{end}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="pagination-wrapper">
+                        {{if gt .TotalPages 1}}
+                        {{.PageHtml}}
+                        {{end}}
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+{{/*                <div class="row">*/}}
+{{/*                    <div class="pagination-wrapper">*/}}
+{{/*                        <ul class="pagination text-center">*/}}
+{{/*                            <li class="disabled"><a>&lt;</a></li>*/}}
+{{/*                            <li class="active"><a>1</a></li>*/}}
+{{/*                            <li><a class="show-loader" href="/topics/swift?p=2&amp;s=">2</a></li>*/}}
+{{/*                            <li><a class="show-loader" href="/topics/swift?p=3&amp;s=">3</a></li>*/}}
+{{/*                            <li><a class="show-loader" href="/topics/swift?p=4&amp;s=">4</a></li>*/}}
+{{/*                            <li><a class="show-loader" href="/topics/swift?p=5&amp;s=">5</a></li>*/}}
+{{/*                            <li class="disabled"><a>...</a></li>*/}}
+{{/*                            <li><a class="show-loader" href="/topics/swift?p=34&amp;s=">&gt;</a></li>*/}}
+{{/*                        </ul>*/}}
+{{/*                    </div>*/}}
+{{/*                </div>*/}}
+            </div>
+        </div>
+    </div>
+</div>
+{{template "widgets/footer.html" .}}
+</body>
+</html>
