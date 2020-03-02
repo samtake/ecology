@@ -119,12 +119,12 @@ qqUserInfo="https://graph.qq.com/user/get_user_info"
         maxIdleConns = 10
         connMaxLifetime = "300s"
     [muses.session.gin]
-        mode = "myredis" # memory, redis
-        name = "mysession"
+        mode = "redis" # memory, redis
+        name = "myredis"
         size = 10
         network = "tcp"
         addr = "127.0.0.1:6379"
-        pwd = ""
+        pwd = "mypassword"
         keypairs = "secret"
     [muses.mixcache.ecology]
         mode = "leveldb" # memory, redis, leveldb
