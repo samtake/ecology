@@ -111,7 +111,16 @@ export default {
             { name: 'SEO列表', path: '/seo/list', component: './seo/list'},
             { name: 'Awesome列表', path: '/awesome/list', component: './awesome/list'},
             { name: '工具列表', path: '/tool/list', component: './tool/list'},
-            // { name: 'SEO列表', path: '/seo/create', component: './seo/list'},
+            { name: '用户管理', path: '/manager/users/list', component: './manager/users/list'},
+            // { name: '仪表盘', path: '/manager/manager/list', component: './manager/manager/list'},
+            { name: '项目管理', path: '/manager/books/list', component: './manager/books/list'},
+            { name: '评论管理', path: '/manager/comments/list', component: './manager/comments/list'},
+            { name: '横幅管理', path: '/manager/banner/list', component: './manager/banner/list'},
+            { name: '配置管理', path: '/manager/setting/list', component: './manager/setting/list'},
+            { name: '分类管理', path: '/manager/category/list', component: './manager/category/list'},
+            { name: '标签管理', path: '/manager/tags/list', component: './manager/tags/list'},
+
+            // { name: 'SEO列表', path: '/seo/update', component: './seo/list'},
             // { name: 'SEO列表', path: '/seo/update', component: './seo/list'},
             {
               component: './404',
